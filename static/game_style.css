@@ -1,0 +1,47 @@
+.cell {
+    /*padding: 5px;*/
+    background: whitesmoke;
+    width: 40px;
+    height: 30px;
+}
+
+.gold_cell {
+    /*padding: 5px;*/
+    background: goldenrod;
+    width: 40px;
+    height: 40px;
+}
+
+.player_cell {
+    background: #81eb43;
+    width: 40px;
+    height: 40px;
+}
+
+
+body {
+    font-family: "Century Gothic", sans-serif;
+}
+
+.btn {
+    font-family: "Century Gothic", sans-serif;
+    font-size: 16px;
+    margin: 15px 7px -5px 5px;
+    border-width: 1px;
+    border-radius: 4px;
+    transition: background-color 0.1s ease-in-out, border-radius 0.1s ease-in-out, scale 0.1s ease-in-out;
+}
+
+.btn:hover {
+    background-color: #a8eb68;
+    border-radius: 9px;
+}
+
+.btn:active {
+    scale: 90%;
+}
+
+.controls {
+    display: flex;
+    flex-direction: row;
+}

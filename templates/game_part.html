@@ -1,0 +1,55 @@
+<link href="{{ url_for('static', filename='game_style.css') }}" rel="stylesheet">
+{% block content %}
+<table>
+    {% for i in game_board %}
+    <tr>
+        {% for j in i %}
+            {% if j == 1 %}
+                <td class="gold_cell"></td>
+            {% elif j == 2 %}
+                <td class="player_cell"></td>
+            {% else %}
+                <td class="cell"></td>
+            {% endif %}
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+
+<div class="controls">
+
+<form action="" method="post">
+    <input class="left" type="hidden" name="left" value="left">
+    <input type="submit" class="btn btn-dark" value="Влево">
+</form>
+
+<form action="" method="post">
+    <input class='up' type="hidden" name="up" value="up">
+    <input type="submit" class="btn btn-dark" value="Вверх">
+</form>
+
+<form action="" method="post">
+    <input class="down" type="hidden" name="down" value="down">
+    <input type="submit" class="btn btn-dark" value="Вниз">
+</form>
+
+<form action="" method="post">
+    <input class="right" type="hidden" name="right" value="right">
+    <input type="submit" class="btn btn-dark" value="Вправо">
+</form>
+
+
+
+
+
+</div>
+
+<div class="gold">
+    <p>Собранное золото: {{ gold_counter }}</p>
+</div>
+
+<div class="health">
+    <p>Осталось здоровья: {{ health_points }}</p>
+</div>
+
+{% endblock %}

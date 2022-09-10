@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="{{ url_for('static', filename='index_style.css') }}" rel="stylesheet">
+</head>
+<body>
+
+<form action="" method="post">
+    {{ form.csrf_token() }}
+
+    <a href=""><button>Начать игру</button></a>
+
+    <p class="width">
+        {{ form.width.label() }}
+        {{ form.width }}
+    </p>
+    <p>
+        {%  for error in form.width.errors %}
+            {{ error }}
+        {% endfor %}
+    </p>
+
+    <p>
+        {{ form.height.label() }}
+        {{ form.height }}
+    </p>
+    <p>
+        {%  for error in form.height.errors %}
+            {{ error }}
+        {% endfor %}
+    </p>
+
+</form>
+
+</body>
+</html>
