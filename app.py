@@ -8,15 +8,8 @@ app = Flask(__name__)
 app.config.from_object(Config)
 
 
-class Counter:
+class Player:
     gold_counter = 0
-
-
-def player_goes():
-    pass
-
-
-class Health:
     health_points = 5
 
 
@@ -42,8 +35,8 @@ def new_game(width, height):
 def index():
     global start_loc
     form = Menu()
-    Health.health_points = 5
-    Counter.gold_counter = 0
+    Player.health_points = 5
+    Player.gold_counter = 0
     if form.validate_on_submit():
         width = form.width.data
         height = form.height.data
@@ -65,27 +58,27 @@ def game(width, height):
                 current_row = i
                 current_col = j
 
-    if Health.health_points and gold_amount == Counter.gold_counter:
+    if Player.health_points and gold_amount == Player.gold_counter:
         return render_template('end-game-sheet.html', title='Ты выиграл!')
 
-    if Health.health_points == 0:
+    if Player.health_points == 0:
         return render_template('end-game-sheet.html', title='Ты повержен!')
 
     up = request.form.get('up')
     if up == 'up' and 2 not in start_loc[0]:
         if start_loc[current_row - 1][current_col] == 1:
-            Counter.gold_counter += 1
+            Player.gold_counter += 1
         if start_loc[current_row - 1][current_col] == 3:
-            Health.health_points -= 1
+            Player.health_points -= 1
         start_loc[current_row - 1][current_col] = 2
         start_loc[current_row][current_col] = 0
 
     down = request.form.get('down')
     if down == 'down' and 2 not in start_loc[-1]:
         if start_loc[current_row + 1][current_col] == 1:
-            Counter.gold_counter += 1
+            Player.gold_counter += 1
         if start_loc[current_row + 1][current_col] == 3:
-            Health.health_points -= 1
+            Player.health_points -= 1
         start_loc[current_row + 1][current_col] = 2
         start_loc[current_row][current_col] = 0
 
@@ -101,9 +94,9 @@ def game(width, height):
 
         if check:
             if start_loc[current_row][current_col - 1] == 1:
-                Counter.gold_counter += 1
+                Player.gold_counter += 1
             if start_loc[current_row][current_col - 1] == 3:
-                Health.health_points -= 1
+                Player.health_points -= 1
             start_loc[current_row][current_col - 1] = 2
             start_loc[current_row][current_col] = 0
 
@@ -118,15 +111,16 @@ def game(width, height):
                 break
         if check:
             if start_loc[current_row][current_col + 1] == 1:
-                Counter.gold_counter += 1
+                Player.gold_counter += 1
             if start_loc[current_row][current_col + 1] == 3:
-                Health.health_points -= 1
+                Player.health_points -= 1
             start_loc[current_row][current_col + 1] = 2
             start_loc[current_row][current_col] = 0
 
-    return render_template('game_part.html', game_board=start_loc,
-                           gold_counter=Counter.gold_counter,
-                           health_points=Health.health_points)
+    return render_template('game_part.html',
+                           game_board=start_loc,
+                           gold_counter=Player.gold_counter,
+                           health_points=Player.health_points)
 
 
 if __name__ == '__main__':
