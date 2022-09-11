@@ -19,15 +19,13 @@ def new_game(width, height):
     global gold_amount
     gold_amount = 0
 
-    for l in game_board:
-        helper = []
-        for cell in l:
-            if cell == 0:
-                helper.append(l.index(cell))
-                print(l.index(cell))
+    for row in game_board:
+        if row[0] != 2:
+            row[random.randint(0, len(row) - 1)] = 3 
+        for cell in row:
             if cell == 1:
                 gold_amount += 1
-        l[random.choice(helper)] = 3
+        print(*row)
     return game_board
 
 
