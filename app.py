@@ -35,11 +35,11 @@ def new_game(width, height):
 def index():
     global start_loc
     form = Menu()
-    Player.health_points = 5
-    Player.gold_counter = 0
     if form.validate_on_submit():
         width = form.width.data
         height = form.height.data
+        Player.health_points = height
+        Player.gold_counter = 0
         start_loc = new_game(width, height)
         return redirect(f'/game/{width}/{height}')
     return render_template('index.html', form=form)
